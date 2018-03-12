@@ -3,7 +3,7 @@ import json
 class Resource(object):
     """A utility class to represent resources in `ResourceSet`
 
-    Args:
+    Parameters:
         path (str, unicode): the path of the resource
     """
     def __init__(self, path):
@@ -22,10 +22,9 @@ class Resource(object):
     def set_scope(self, http_method, scope):
         """Set a scope condition for the resource for a http_method
 
-        Args:
-            http_method (str): HTTP method like GET, POST, PUT, DELETE
-            scope (str, list): the scope of access control as str if single, or
-                as a list of strings if multiple scopes are to be set
+        Parameters:
+            * **http_method (str):** HTTP method like GET, POST, PUT, DELETE
+            * **scope (str, list):** the scope of access control as str if single, or as a list of strings if multiple scopes are to be set
         """
 
         for con in self.conditions:
@@ -49,9 +48,9 @@ class Resource(object):
         scopes. Please read more about scope_expression at
         https://gluu.org/docs/ce/3.1.2/admin-guide/uma.md
 
-        Args:
-            http_method (str): a HTTP method like GET, POST, PUT, DELETE
-            expression (dict): the scope expression in the format::
+        Parameters:
+            * **http_method (str):** a HTTP method like GET, POST, PUT, DELETE
+            * **expression (dict):** the scope expression in the format::
 
                 {
                   "rule": {
@@ -92,8 +91,8 @@ class ResourceSet(object):
     def add(self, path):
         """Adds a new resource with the given path to the resource set.
 
-        Args:
-            path (str, unicode): path of the resource to be protected
+        Parameters:
+            * **path (str, unicode):** path of the resource to be protected
 
         Raises:
             TypeError when the path is not a string or a unicode string

@@ -18,15 +18,12 @@ class Configurer(object):
         """get function reads the config value for the requested section and
         key and returns it
 
-        Args:
-            section (string) - the section to look for the config value
-                               either - oxd, client
-            key (string) - the key for the config value required
+        Parameters:
+            * **section (string):** the section to look for the config value either - oxd, client
+            * **key (string):** the key for the config value required
 
         Returns:
-            value (string) - the function returns the value of the key
-                               in the appropriate format if found or returns
-                               None if such a section or key couldnot be found
+            **value (string):** the function returns the value of the key in the appropriate format if found or returns None if such a section or key couldnot be found
 
         Example:
             config = Configurer(location)
@@ -42,17 +39,15 @@ class Configurer(object):
         """set function sets a particular value for the specified key in the
         specified section and writes it to the config file.
 
-        Args:
-            section (string) - the section under which the config should be
-                               saved. Only accepted values are - oxd, client
+        Parameters:
+            * **section (string):** the section under which the config should be saved. Only accepted values are - oxd, client
 
-            key (string) - the key/name of the config value
+            * **key (string):** the key/name of the config value
 
-            value (string) - the value which needs to be stored as a string
+            * **value (string):** the value which needs to be stored as a string
 
         Returns:
-            success (bool) - a boolean indication of whether the value was
-                             stored successfully in the file
+            **success (bool):** a boolean indication of whether the value was stored successfully in the file
         """
         if not self.parser.has_section(section):
             logger.warning("Invalid config section: %s", section)

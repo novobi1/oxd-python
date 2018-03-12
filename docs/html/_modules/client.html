@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>oxdpython.client &mdash; oxd Python 3.1.1 documentation</title>
+  <title>client &mdash; oxd-python 3.1.2 documentation</title>
   
 
+  
+  
   
   
 
@@ -24,22 +26,26 @@
 
   
   
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   
 
   
 
   
-    <link rel="top" title="oxd Python 3.1.1 documentation" href="../../index.html"/>
-        <link rel="up" title="Module code" href="../index.html"/> 
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="oxd-python 3.1.2 documentation" href="../index.html"/>
+        <link rel="up" title="Module code" href="index.html"/> 
 
   
-  <script src="../../_static/js/modernizr.min.js"></script>
+  <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -49,7 +55,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> oxd Python
+            <a href="../index.html" class="icon icon-home"> oxd-python
           
 
           
@@ -59,14 +65,14 @@
             
             
               <div class="version">
-                3.1.1
+                3.1.2
               </div>
             
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -80,11 +86,15 @@
           
             
             
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../client.html">oxdpython.client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../configurer.html">oxdpython.configurer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">oxdpython.exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../messenger.html">oxdpython.messenger</a></li>
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../client.html">client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configurer.html">configurer module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exceptions.html">exceptions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../messenger.html">messenger module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html">utils module</a></li>
 </ul>
 
             
@@ -97,8 +107,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">oxd Python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">oxd-python</a>
+        
       </nav>
 
 
@@ -111,42 +123,55 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
-          <li><a href="../index.html">Module code</a> &raquo;</li>
-      
-    <li>oxdpython.client</li>
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>client</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for oxdpython.client</h1><div class="highlight"><pre>
+  <h1>Source code for client</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">logging</span>
 
-<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Timer</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="k">import</span> <span class="n">Timer</span>
 
-<span class="kn">from</span> <span class="nn">.configurer</span> <span class="kn">import</span> <span class="n">Configurer</span>
-<span class="kn">from</span> <span class="nn">.messenger</span> <span class="kn">import</span> <span class="n">Messenger</span>
-<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">OxdServerError</span><span class="p">,</span> <span class="n">NeedInfoError</span><span class="p">,</span> <span class="n">InvalidTicketError</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">:</span>
+<div class="viewcode-block" id="Client"><a class="viewcode-back" href="../client.html#client.Client">[docs]</a><span class="k">class</span> <span class="nc">Client</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Client is the main class that carries out the task of talking with the</span>
 <span class="sd">    oxd server. The oxd commands are provided as class methods that are called</span>
 <span class="sd">    to send the command to the oxd-server or the oxd-https-extension</span>
 
-<span class="sd">    Args:</span>
+<span class="sd">    Parameters:</span>
 <span class="sd">        config_location (string): The complete path of the location</span>
 <span class="sd">            of the config file. Sample config at</span>
 <span class="sd">            (https://github.com/GluuFederation/oxd-python/blob/master/sample.cfg)</span>
@@ -156,12 +181,12 @@
         <span class="sd">&quot;&quot;&quot;Constructor of class Client</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">Configurer</span><span class="p">(</span><span class="n">config_location</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;https_extension&quot;</span><span class="p">):</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;https_extenstion is enabled.&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span> <span class="o">=</span> <span class="n">Messenger</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span><span class="p">),</span>
-                                         <span class="n">https_extension</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                                         <span class="n">https_extension</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span> <span class="o">=</span> <span class="n">Messenger</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;host&quot;</span><span class="p">),</span>
                                          <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span><span class="p">)))</span>
@@ -203,15 +228,14 @@
                                 <span class="s2">&quot;claims_redirect_uri&quot;</span><span class="p">,</span>
                                 <span class="p">]</span>
 
-<div class="viewcode-block" id="Client.register_site"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.register_site">[docs]</a>    <span class="k">def</span> <span class="nf">register_site</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.register_site"><a class="viewcode-back" href="../client.html#client.Client.register_site">[docs]</a>    <span class="k">def</span> <span class="nf">register_site</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to register the site and generate a unique ID for the site</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            string: The ID of the site (also called client id) if the</span>
-<span class="sd">            registration is successful</span>
+<span class="sd">            **string:** The ID of the site (also called client id) if the registration is successful</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: If the site registration fails.</span>
+<span class="sd">            **OxdServerError:** If the site registration fails.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Client is already registered. ID: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
@@ -220,6 +244,7 @@
         <span class="c1"># add required params for the command</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;authorization_redirect_uri&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_redirect_uri</span><span class="p">,</span>
+			<span class="s2">&quot;oxd_rp_programming_language&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
             <span class="p">}</span>
 
         <span class="c1"># add other optional params if they exist in config</span>
@@ -240,36 +265,26 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Site registration successful. Oxd ID: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span></div>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Site registration successful. Oxd ID: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span>
 
-<div class="viewcode-block" id="Client.get_authorization_url"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_authorization_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_authorization_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acr_values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                              <span class="n">custom_params</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_authorization_url"><a class="viewcode-back" href="../client.html#client.Client.get_authorization_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_authorization_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acr_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                              <span class="n">custom_params</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to get the authorization url that can be opened in the</span>
 <span class="sd">        browser for the user to provide authorization and authentication</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            acr_values (list, optional): acr values in the order of priority</span>
-<span class="sd">            prompt (string, optional): prompt=login is required if you want to</span>
-<span class="sd">                force alter current user session (in case user is already</span>
-<span class="sd">                logged in from site1 and site2 constructs authorization</span>
-<span class="sd">                request and want to force alter current user session)</span>
-<span class="sd">            scope (list, optional): scopes required, takes the one provided</span>
-<span class="sd">                during site registrations by default</span>
-<span class="sd">            custom_params (dict, optional): Any custom arguments that the</span>
-<span class="sd">                client wishes to pass on to the OP can be passed on as extra</span>
-<span class="sd">                parameters to the function</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **acr_values (list, optional):** acr values in the order of priority</span>
+<span class="sd">            * **prompt (string, optional):** prompt=login is required if you want to force alter current user session (in case user is already logged in from site1 and site2 constructs authorization request and want to force alter current user session)</span>
+<span class="sd">            * **scope (list, optional):** scopes required, takes the one provided during site registrations by default</span>
+<span class="sd">            * **custom_params (dict, optional):** Any custom arguments that the client wishes to pass on to the OP can be passed on as extra parameters to the function</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            string: The authorization url that the user must access for</span>
-<span class="sd">            authentication and authorization</span>
+<span class="sd">            **string:** The authorization url that the user must access for authentication and authorization</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: If the oxd throws an error for any reason.</span>
+<span class="sd">            **OxdServerError:** If the oxd throws an error for any reason.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">register_site</span><span class="p">()</span>
-
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">}</span>
 
         <span class="k">if</span> <span class="n">scope</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -290,19 +305,19 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;authorization_url&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;authorization_url&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.get_tokens_by_code"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_tokens_by_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_tokens_by_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_tokens_by_code"><a class="viewcode-back" href="../client.html#client.Client.get_tokens_by_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_tokens_by_code</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to get access code for getting the user details from the</span>
 <span class="sd">        OP. It is called after the user authorizes by visiting the auth URL.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            code (string): code, parse from the callback URL querystring</span>
-<span class="sd">            state (string): state value parsed from the callback URL</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **code (string):** code, parse from the callback URL querystring</span>
+<span class="sd">            * **state (string):** state value parsed from the callback URL</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: The tokens object with the following data structure.</span>
+<span class="sd">            **dict:** The tokens object with the following data structure.</span>
 
 <span class="sd">            Example response::</span>
 
@@ -324,7 +339,7 @@
 <span class="sd">                }</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: If oxd server throws an error OR if the params code</span>
+<span class="sd">            **OxdServerError:** If oxd server throws an error OR if the params code</span>
 <span class="sd">                and scopes are of improper data type.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span> <span class="n">code</span><span class="o">=</span><span class="n">code</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span>
@@ -335,19 +350,18 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.get_access_token_by_refresh_token"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_access_token_by_refresh_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_access_token_by_refresh_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refresh_token</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_access_token_by_refresh_token"><a class="viewcode-back" href="../client.html#client.Client.get_access_token_by_refresh_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_access_token_by_refresh_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">refresh_token</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function that is used to get a new access token using refresh token</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            refresh_token (str): refresh_token from get_tokens_by_code command</span>
-<span class="sd">            scope (list, optional): a list of scopes. If not specified should</span>
-<span class="sd">                grant access with scope provided in previous request</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **refresh_token (str):** refresh_token from get_tokens_by_code command</span>
+<span class="sd">            * **scope (list, optional):** a list of scopes. If not specified should grant access with scope provided in previous request</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: the tokens with expiry time.</span>
+<span class="sd">            **dict:** the tokens with expiry time.</span>
 
 <span class="sd">            Example response::</span>
 
@@ -373,10 +387,10 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.get_user_info"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_user_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_token</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_user_info"><a class="viewcode-back" href="../client.html#client.Client.get_user_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_user_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_token</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to get the information about the user using the access code</span>
 <span class="sd">        obtained from the OP</span>
 
@@ -384,12 +398,11 @@
 <span class="sd">            Refer to the /.well-known/openid-configuration URL of your OP for</span>
 <span class="sd">            the complete list of the claims for different scopes.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            access_token (string): access token from the get_tokens_by_code</span>
-<span class="sd">                                    function</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **access_token (string):** access token from the get_tokens_by_code function</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: The user data claims that are returned by the OP in format</span>
+<span class="sd">            **dict:** The user data claims that are returned by the OP in format</span>
 
 <span class="sd">            Example response::</span>
 
@@ -404,7 +417,7 @@
 <span class="sd">                }</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: If the param access_token is empty OR if the oxd</span>
+<span class="sd">            **OxdServerError:** If the param access_token is empty OR if the oxd</span>
 <span class="sd">                Server returns an error.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span> <span class="n">access_token</span><span class="o">=</span><span class="n">access_token</span><span class="p">)</span>
@@ -415,23 +428,21 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;claims&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;claims&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.get_logout_uri"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_logout_uri">[docs]</a>    <span class="k">def</span> <span class="nf">get_logout_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_token_hint</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">post_logout_redirect_uri</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                       <span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">session_state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_logout_uri"><a class="viewcode-back" href="../client.html#client.Client.get_logout_uri">[docs]</a>    <span class="k">def</span> <span class="nf">get_logout_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_token_hint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">post_logout_redirect_uri</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">session_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to logout the user.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            id_token_hint (string, optional): oxd server will use last used</span>
-<span class="sd">                ID Token, if not provided</span>
-<span class="sd">            post_logout_redirect_uri (string, optional): URI to redirect,</span>
-<span class="sd">                this uri would override the value given in the site-config</span>
-<span class="sd">            state (string, optional): site state</span>
-<span class="sd">            session_state (string, optional): session state</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **id_token_hint (string, optional):** oxd server will use last used ID Token, if not provided</span>
+<span class="sd">            * **post_logout_redirect_uri (string, optional):** URI to redirect, this uri would override the value given in the site-config</span>
+<span class="sd">            * **state (string, optional):** site state</span>
+<span class="sd">            * **session_state (string, optional):** session state</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            string: The URI to which the user must be directed in order to</span>
+<span class="sd">            **string:** The URI to which the user must be directed in order to</span>
 <span class="sd">            perform the logout</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">}</span>
@@ -452,22 +463,30 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;uri&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;uri&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.update_site_registration"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.update_site_registration">[docs]</a>    <span class="k">def</span> <span class="nf">update_site_registration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.update_site"><a class="viewcode-back" href="../client.html#client.Client.update_site">[docs]</a>    <span class="k">def</span> <span class="nf">update_site</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_secret_expires_at</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to update the site&#39;s information with OpenID Provider.</span>
 <span class="sd">        This should be called after changing the values in the cfg file.</span>
 
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **client_secret_expires_at (long, OPTIONAL):** milliseconds since 1970, can be used to extends client lifetime</span>
+
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: The status for update. True for success and False for failure</span>
+<span class="sd">            **bool:** The status for update. True for success and False for failure</span>
 
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: When the update fails and oxd server returns error</span>
+<span class="sd">            **OxdServerError:** When the update fails and oxd server returns error</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span>
-                  <span class="s2">&quot;authorization_redirect_uri&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_redirect_uri</span>
-                  <span class="p">}</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span>
+            <span class="s2">&quot;authorization_redirect_uri&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_redirect_uri</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">client_secret_expires_at</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s2">&quot;client_secret_expires_at&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">client_secret_expires_at</span>
+
         <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">opt_params</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
@@ -478,25 +497,24 @@
                 <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
                 <span class="n">params</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
 
-        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending `update_site_registration` with params </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending `update_site` with params </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                      <span class="n">params</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;update_site_registration&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;update_site&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+</div>
+        <span class="k">return</span> <span class="kc">True</span>
 
-        <span class="k">return</span> <span class="bp">True</span></div>
-
-<div class="viewcode-block" id="Client.uma_rs_protect"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.uma_rs_protect">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rs_protect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resources</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.uma_rs_protect"><a class="viewcode-back" href="../client.html#client.Client.uma_rs_protect">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rs_protect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resources</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to be used in a UMA Resource Server to protect resources.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            resources (list): list of resource to protect. See example at</span>
-<span class="sd">                &lt;https://gluu.org/docs/oxd/3.1.1/api/#uma-rs-protect-resources&gt;_</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **resources (list):** list of resource to protect. See example at `here &lt;https://gluu.org/docs/oxd/3.1.2/api/#uma-rs-protect-resources&gt;`_</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            bool: The status of the request.</span>
+<span class="sd">            **bool:** The status of the request.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span> <span class="n">resources</span><span class="o">=</span><span class="n">resources</span><span class="p">)</span>
 
@@ -505,21 +523,20 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="bp">True</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="kc">True</span>
 
-<div class="viewcode-block" id="Client.uma_rs_check_access"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.uma_rs_check_access">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rs_check_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpt</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">http_method</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.uma_rs_check_access"><a class="viewcode-back" href="../client.html#client.Client.uma_rs_check_access">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rs_check_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpt</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">http_method</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to be used in a UMA Resource Server to check access.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            rpt (string): RPT or blank value if absent (not send by RP)</span>
-<span class="sd">            path (string): Path of resource (e.g. for http://rs.com/phones,</span>
-<span class="sd">                /phones should be passed)</span>
-<span class="sd">            http_method (string) - Http method of RP request (GET, POST, PUT,</span>
-<span class="sd">                DELETE)</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **rpt (string):** RPT or blank value if absent (not send by RP)</span>
+<span class="sd">            * **path (string):** Path of resource (e.g. for http://rs.com/phones, /phones should be passed)</span>
+<span class="sd">            * **http_method (string):** Http method of RP request (GET, POST, PUT, DELETE)</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: The access information received in the format below.</span>
+<span class="sd">            **dict:** The access information received in the format below.</span>
+
 <span class="sd">            If the access is granted::</span>
 
 <span class="sd">                { &quot;access&quot;: &quot;granted&quot; }</span>
@@ -539,15 +556,9 @@
 
 <span class="sd">                { &quot;access&quot;: &quot;denied&quot; }</span>
 
-<span class="sd">            If the resource is not Protected::</span>
-
-<span class="sd">                {</span>
-<span class="sd">                    &quot;error&quot;: &quot;invalid_request&quot;,</span>
-<span class="sd">                    &quot;error_description&quot;: &quot;Resource is not protected. Please</span>
-<span class="sd">                        protect your resource first with uma_rs_protect</span>
-<span class="sd">                        command.&quot;</span>
-<span class="sd">                }</span>
-
+<span class="sd">        Raises:</span>
+<span class="sd">            ``oxdpython.exceptions.InvalidRequestError`` if the resource is not</span>
+<span class="sd">                protected</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span>
                   <span class="s2">&quot;rpt&quot;</span><span class="p">:</span> <span class="n">rpt</span><span class="p">,</span>
@@ -560,27 +571,29 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span></div>
+            <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;invalid_request&#39;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidRequestError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.uma_rp_get_rpt"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.uma_rp_get_rpt">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rp_get_rpt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">claim_token</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">claim_token_format</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                       <span class="n">pct</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">rpt</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.uma_rp_get_rpt"><a class="viewcode-back" href="../client.html#client.Client.uma_rp_get_rpt">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rp_get_rpt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticket</span><span class="p">,</span> <span class="n">claim_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">claim_token_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                       <span class="n">pct</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rpt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to be used by a UMA Requesting Party to get RPT token.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            ticket (str, REQUIRED): ticket</span>
-<span class="sd">            claim_token (str, OPTIONAL): claim token</span>
-<span class="sd">            claim_token_format (str, OPTIONAL): claim token format</span>
-<span class="sd">            pct (str, OPTIONAL): pct</span>
-<span class="sd">            rpt (str, OPTIONAL): rpt</span>
-<span class="sd">            scope (list, OPTIONAL): scope</span>
-<span class="sd">            state (str, OPTIONAL): state that is returned from</span>
-<span class="sd">                `uma_rp_get_claims_gathering_url` command</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **ticket (str, REQUIRED):** ticket</span>
+<span class="sd">            * **claim_token (str, OPTIONAL):** claim token</span>
+<span class="sd">            * **claim_token_format (str, OPTIONAL):** claim token format</span>
+<span class="sd">            * **pct (str, OPTIONAL):** pct</span>
+<span class="sd">            * **rpt (str, OPTIONAL):** rpt</span>
+<span class="sd">            * **scope (list, OPTIONAL):** scope</span>
+<span class="sd">            * **state (str, OPTIONAL):** state that is returned from `uma_rp_get_claims_gathering_url` command</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: The response from the OP</span>
+<span class="sd">            **dict:** The response from the OP.</span>
 
-<span class="sd">            Success Response::</span>
+<span class="sd">            Success response::</span>
 
 <span class="sd">                {</span>
 <span class="sd">                    &quot;status&quot;:&quot;ok&quot;,</span>
@@ -592,38 +605,29 @@
 <span class="sd">                    }</span>
 <span class="sd">                }</span>
 
+<span class="sd">            NeedInfoError response::</span>
+
+<span class="sd">                {</span>
+<span class="sd">					&quot;error&quot;:&quot;need_info&quot;,</span>
+<span class="sd">					&quot;ticket&quot;:&quot;ZXJyb3JfZGV0YWlscw==&quot;,</span>
+<span class="sd">					&quot;required_claims&quot;:[</span>
+<span class="sd">						{</span>
+<span class="sd">							&quot;claim_token_format&quot;:[</span>
+<span class="sd">								&quot;http://openid.net/specs/openid-connect-core-1_0.html#IDToken&quot;</span>
+<span class="sd">							],</span>
+<span class="sd">							&quot;claim_type&quot;:&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;,</span>
+<span class="sd">							&quot;friendly_name&quot;:&quot;email&quot;,</span>
+<span class="sd">							&quot;issuer&quot;:[&quot;https://example.com/idp&quot;],</span>
+<span class="sd">							&quot;name&quot;:&quot;email23423453ou453&quot;</span>
+<span class="sd">						}</span>
+<span class="sd">					],</span>
+<span class="sd">					&quot;redirect_user&quot;:&quot;https://as.example.com/rqp_claims?id=2346576421&quot;</span>
+<span class="sd">				}</span>
+<span class="sd">				</span>
 <span class="sd">        Raises:</span>
-<span class="sd">            OxdServerError: When oxd-server reports a generic internal_error</span>
-<span class="sd">            InvalidTicketError: When the oxd server returns a &quot;invalid_ticket&quot;</span>
-<span class="sd">                error</span>
-<span class="sd">            NeedInfoError: When the oxd server returns the &quot;need_info&quot; error.</span>
-<span class="sd">                The details of the error can be obtained from the exception as</span>
-<span class="sd">                a dict as shown below::</span>
-
-<span class="sd">                    try:</span>
-<span class="sd">                        rpt = client.uma_rp_get_rpt(&#39;ticket&#39;)</span>
-<span class="sd">                    except NeedInfoError as e:</span>
-<span class="sd">                        details = e.details</span>
-
-<span class="sd">                The details dict::</span>
-
-<span class="sd">                    {</span>
-<span class="sd">                        &quot;error&quot;:&quot;need_info&quot;,</span>
-<span class="sd">                        &quot;ticket&quot;:&quot;ZXJyb3JfZGV0YWlscw==&quot;,</span>
-<span class="sd">                        &quot;required_claims&quot;:[</span>
-<span class="sd">                            {</span>
-<span class="sd">                                &quot;claim_token_format&quot;:[</span>
-<span class="sd">                                    &quot;http://openid.net/specs/openid-connect-core-1_0.html#IDToken&quot;</span>
-<span class="sd">                                ],</span>
-<span class="sd">                                &quot;claim_type&quot;:&quot;urn:oid:0.9.2342.19200300.100.1.3&quot;,</span>
-<span class="sd">                                &quot;friendly_name&quot;:&quot;email&quot;,</span>
-<span class="sd">                                &quot;issuer&quot;:[&quot;https://example.com/idp&quot;],</span>
-<span class="sd">                                &quot;name&quot;:&quot;email23423453ou453&quot;</span>
-<span class="sd">                            }</span>
-<span class="sd">                        ],</span>
-<span class="sd">                        &quot;redirect_user&quot;:&quot;https://as.example.com/rqp_claims?id=2346576421&quot;</span>
-<span class="sd">                    }</span>
-
+<span class="sd">            **OxdServerError:** When oxd-server reports a generic internal_error</span>
+<span class="sd">            **InvalidTicketError:** When the oxd server returns a &quot;invalid_ticket&quot; error</span>
+<span class="sd">			</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span>
@@ -653,20 +657,19 @@
             <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;need_info&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">NeedInfoError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 
-        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;invalid_ticket&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">InvalidTicketError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;error&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;invalid_ticket&#39;</span><span class="p">:</span></div>
+            <span class="k">raise</span> <span class="n">InvalidTicketError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
 
-<div class="viewcode-block" id="Client.uma_rp_get_claims_gathering_url"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.uma_rp_get_claims_gathering_url">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rp_get_claims_gathering_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticket</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.uma_rp_get_claims_gathering_url"><a class="viewcode-back" href="../client.html#client.Client.uma_rp_get_claims_gathering_url">[docs]</a>    <span class="k">def</span> <span class="nf">uma_rp_get_claims_gathering_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ticket</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;UMA RP function to get the claims gathering URL.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            ticket (str): ticket to pass to the auth server. for 90% of the</span>
-<span class="sd">                cases, this will be obtained from &#39;need_info&#39; error of get_rpt</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **ticket (str):** ticket to pass to the auth server. for 90% of the cases, this will be obtained from &#39;need_info&#39; error of get_rpt</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            string specifying the claims gathering url</span>
+<span class="sd">            **string** specifying the claims gathering url</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;oxd_id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">,</span>
@@ -681,10 +684,10 @@
         <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span></div>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
 
-<div class="viewcode-block" id="Client.setup_client"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.setup_client">[docs]</a>    <span class="k">def</span> <span class="nf">setup_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.setup_client"><a class="viewcode-back" href="../client.html#client.Client.setup_client">[docs]</a>    <span class="k">def</span> <span class="nf">setup_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The command registers the client for communication protection. This</span>
 <span class="sd">        will be used to obtain an access token via the Get Client Token</span>
 <span class="sd">        command. The access token will be passed as a protection_access_token</span>
@@ -694,7 +697,7 @@
 <span class="sd">            If you are using the oxd-https-extension, you must setup the client</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: the client setup information</span>
+<span class="sd">            **dict:** the client setup information</span>
 
 <span class="sd">            Example response::</span>
 
@@ -713,6 +716,7 @@
         <span class="c1"># add required params for the command</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;authorization_redirect_uri&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">authorization_redirect_uri</span><span class="p">,</span>
+			<span class="s2">&quot;oxd_rp_programming_language&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
             <span class="p">}</span>
 
         <span class="c1"># add other optional params if they exist in config</span>
@@ -732,6 +736,8 @@
         <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;oxd&quot;</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;oxd_id&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="s2">&quot;client_id&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_id&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="s2">&quot;client_secret&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_secret&quot;</span><span class="p">])</span>
@@ -743,34 +749,27 @@
                             <span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_registration_client_uri&quot;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;client&quot;</span><span class="p">,</span> <span class="s2">&quot;client_id_issued_at&quot;</span><span class="p">,</span>
                         <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;client_id_issued_at&quot;</span><span class="p">]))</span>
+</div>
+        <span class="k">return</span> <span class="n">data</span>
 
-        <span class="k">return</span> <span class="n">data</span></div>
-
-<div class="viewcode-block" id="Client.get_client_token"><a class="viewcode-back" href="../../client.html#oxdpython.client.Client.get_client_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_client_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">client_secret</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                         <span class="n">op_host</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">op_discovery_path</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
-                         <span class="n">auto_update</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Client.get_client_token"><a class="viewcode-back" href="../client.html#client.Client.get_client_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_client_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">op_host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">op_discovery_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">auto_update</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to get the client token which can be used for protection in</span>
-<span class="sd">        all future communication. The access token recieved by this method is</span>
+<span class="sd">        all future communication. The access token received by this method is</span>
 <span class="sd">        stored in the config file and used as the `protection_access_token`</span>
 <span class="sd">        for all subsequent calls to oxd.</span>
 
-<span class="sd">        Args:</span>
-<span class="sd">            client_id (str, optional): client id from OP or from previous</span>
-<span class="sd">                `setup_client` call</span>
-<span class="sd">            client_secret (str, optional): client secret from the OP or from</span>
-<span class="sd">                `setup_client` call</span>
-<span class="sd">            op_host (str, optional): OP Host URL, default is read from the site</span>
-<span class="sd">                configuration file</span>
-<span class="sd">            op_discovery_path (str, optional): op discovery path provided by OP</span>
-<span class="sd">            scope (list, optional): scopes of access required, default values</span>
-<span class="sd">                are obtained from the config file</span>
-<span class="sd">            auto_update(bool, optional): automatically get a new access_token</span>
-<span class="sd">                when the current one expires. If this is set to False, then</span>
-<span class="sd">                the appliacation must call `get_client_token` when the token</span>
-<span class="sd">                expires to update the client with a new access token.</span>
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **client_id (str, optional):** client id from OP or from previous `setup_client` call</span>
+<span class="sd">            * **client_secret (str, optional):** client secret from the OP or from `setup_client` call</span>
+<span class="sd">            * **op_host (str, optional):** OP Host URL, default is read from the site configuration file</span>
+<span class="sd">            * **op_discovery_path (str, optional):** op discovery path provided by OP</span>
+<span class="sd">            * **scope (list, optional):** scopes of access required, default values are obtained from the config file</span>
+<span class="sd">            * **auto_update(bool, optional):** automatically get a new access_token when the current one expires. If this is set to False, then the application must call `get_client_token` when the token expires to update the client with a new access token.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: The client token and the refresh token in the form.</span>
+<span class="sd">            **dict:** The client token and the refresh token in the form.</span>
 
 <span class="sd">            Example response ::</span>
 
@@ -821,10 +820,122 @@
                         <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> seconds&quot;</span><span class="p">,</span> <span class="n">interval</span><span class="p">)</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_client_token</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
             <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 
-        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span></div></div>
+<div class="viewcode-block" id="Client.remove_site"><a class="viewcode-back" href="../client.html#client.Client.remove_site">[docs]</a>    <span class="k">def</span> <span class="nf">remove_site</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cleans up the data for the site.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            oxd_id if the process was completed without error</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            OxdServerError if there was an issue with the operation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending command `remove_site` with params </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                     <span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;remove_site&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;oxd_id&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Client.introspect_access_token"><a class="viewcode-back" href="../client.html#client.Client.introspect_access_token">[docs]</a>    <span class="k">def</span> <span class="nf">introspect_access_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_token</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gives information about an access token.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **access_token (str, required):** access_token from get_tokens_by_code or get_client_token function</span>
+<span class="sd">                </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            **dict:** The information about the access token.</span>
+
+<span class="sd">            Example response ::</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &quot;active&quot;:true,</span>
+<span class="sd">                    &quot;client_id&quot;: &quot;@6F96!19756yCF4F!C964FF&quot;,</span>
+<span class="sd">                    &quot;username&quot;: &quot;John Doe&quot;,</span>
+<span class="sd">                    &quot;scopes&quot;: &quot;openid&quot;,</span>
+<span class="sd">                    &quot;token_type&quot;: &quot;bearer&quot;,</span>
+<span class="sd">                    &quot;sub&quot;: &quot;John Doe&quot;,</span>
+<span class="sd">                    &quot;aud&quot;: &quot;@6F96!19756yCF4F!C964FF&quot;,</span>
+<span class="sd">                    &quot;iss&quot;: &quot;https://idp.example.com&quot;,</span>
+<span class="sd">                    &quot;exp&quot;: &quot;1518268876&quot;,</span>
+<span class="sd">                    &quot;iat&quot;: &quot;1518268576&quot;,</span>
+<span class="sd">                    &quot;acr_values&quot;: null,</span>
+<span class="sd">                    &quot;jti&quot;: null</span>
+<span class="sd">                }</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            OxdServerError if there was an issue with the operation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
+
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">access_token</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending command `introspect_access_token` with params </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                     <span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;introspect_access_token&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Client.introspect_rpt"><a class="viewcode-back" href="../client.html#client.Client.introspect_rpt">[docs]</a>    <span class="k">def</span> <span class="nf">introspect_rpt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rpt</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gives information about an RPT.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">            * **rpt (str, required):** rpt from uma_rp_get_rpt function</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            **dict:** The information about the RPT.</span>
+
+<span class="sd">            Example response ::</span>
+
+<span class="sd">                {</span>
+<span class="sd">                    &quot;active&quot;: true,</span>
+<span class="sd">                    &quot;exp&quot;: 1256953732,</span>
+<span class="sd">                    &quot;iat&quot;: 1256912345,</span>
+<span class="sd">                    &quot;nbf&quot;: null,</span>
+<span class="sd">                    &quot;permissions&quot;: [{</span>
+<span class="sd">                        &quot;resource_id&quot;: &quot;112210f47de98100&quot;,</span>
+<span class="sd">                        &quot;resource_scopes&quot;: [</span>
+<span class="sd">                            &quot;view&quot;,</span>
+<span class="sd">                            &quot;http://photoz.example.com/dev/actions/print&quot;</span>
+<span class="sd">                        ],</span>
+<span class="sd">                        &quot;exp&quot;: 1256953732</span>
+<span class="sd">                    }],</span>
+<span class="sd">                    &quot;client_id&quot;: &quot;@6F96!19756yCF4F!C964FF&quot;,</span>
+<span class="sd">                    &quot;sub&quot;: &quot;John Doe&quot;,</span>
+<span class="sd">                    &quot;aud&quot;: &quot;@6F96!19756yCF4F!C964FF&quot;,</span>
+<span class="sd">                    &quot;iss&quot;: &quot;https://idp.example.com&quot;,</span>
+<span class="sd">                    &quot;jti&quot;: null                                         </span>
+<span class="sd">                }</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            OxdServerError if there was an issue with the operation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">oxd_id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">oxd_id</span><span class="p">)</span>
+
+        <span class="n">params</span><span class="p">[</span><span class="s1">&#39;rpt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rpt</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Sending command `introspect_rpt` with params </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+                     <span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">msgr</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;introspect_rpt&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Received response: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">OxdServerError</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">])</span></div></div>
+        <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
 </pre></div>
 
+           </div>
+           <div class="articleComments">
+            
            </div>
           </div>
           <footer>
@@ -834,7 +945,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Gluu.
+        &copy; Copyright 2018, Gluu.
 
     </p>
   </div>
@@ -855,31 +966,26 @@
 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.1.1',
+            URL_ROOT:'../',
+            VERSION:'3.1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
 
   
 
   
   
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
   
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
    
 
 </body>

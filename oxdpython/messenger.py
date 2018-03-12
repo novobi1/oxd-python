@@ -25,12 +25,12 @@ class Messenger(object):
         Client will call this function with the command and the params to be
         sent to the oxd-server
 
-        Args:
-            command (str): The command that has to be sent to the oxd-server
-            **kwargs: The parameters that should accompany the request
+        Parameters:
+            * **command (str):** The command that has to be sent to the oxd-server
+            * ** **kwargs:** The parameters that should accompany the request
 
         Returns:
-            dict: the returned response from oxd-server as a dictionary
+            **dict:** the returned response from oxd-server as a dictionary
         """
         pass
 
@@ -53,10 +53,9 @@ class SocketMessenger(Messenger):
     def __init__(self, host='localhost', port=8099):
         """Constructor for SocketMessenger
 
-        Args:
-            host (str) - the host to connect for oxd-server, default localhost
-            port (integer) - the port number to bind to the host, default
-                             is 8099
+        Parameters:
+            * **host (str):** the host to connect for oxd-server, default localhost
+            * **port (integer):** the port number to bind to the host, default is 8099
         """
         Messenger.__init__(self)
         self.host = host
@@ -81,11 +80,11 @@ class SocketMessenger(Messenger):
         """send function sends the command to the oxd server and recieves the
         response.
 
-        Args:
-            command (dict) - Dict representation of the JSON command string
+        Parameters:
+            * **command (dict):** Dict representation of the JSON command string
 
         Returns:
-            response (dict) - The JSON response from the oxd Server as a dict
+            **response (dict):** The JSON response from the oxd Server as a dict
         """
         cmd = json.dumps(command)
         cmd = "{:04d}".format(len(cmd)) + cmd
@@ -141,12 +140,12 @@ class SocketMessenger(Messenger):
         """Function that builds the request and returns the response from
         oxd-server
 
-        Args:
-            command (str): The command that has to be sent to the oxd-server
-            **kwargs: The parameters that should accompany the request
+        Parameters:
+            * **command (str):** The command that has to be sent to the oxd-server
+            * ** **kwargs:** The parameters that should accompany the request
 
         Returns:
-            dict: the returned response from oxd-server as a dictionary
+            **dict:** the returned response from oxd-server as a dictionary
         """
         payload = {
             "command": command,
@@ -167,8 +166,8 @@ class SocketMessenger(Messenger):
 class HttpMessenger(Messenger):
     """HttpMessenger provides the communication channel for oxd-https-extension
 
-    Args:
-        host (str): host URL to which the requests are to be made
+    Parameters:
+        * **host (str):** host URL to which the requests are to be made
     """
     def __init__(self, host):
         Messenger.__init__(self)
@@ -185,12 +184,12 @@ class HttpMessenger(Messenger):
     def request(self, command, **kwargs):
         """Function that builds the request and returns the response
 
-        Args:
-            command (str): The command that has to be sent to the oxd-server
-            **kwargs: The parameters that should accompany the request
+        Parameters:
+            * **command (str):** The command that has to be sent to the oxd-server
+            * ** **kwargs:** The parameters that should accompany the request
 
         Returns:
-            dict: the returned response from oxd-server as a dictionary
+            **dict:** the returned response from oxd-server as a dictionary
         """
         url = self.base + command.replace("_", "-")
 

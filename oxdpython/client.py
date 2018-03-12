@@ -15,7 +15,7 @@ class Client:
     oxd server. The oxd commands are provided as class methods that are called
     to send the command to the oxd-server or the oxd-https-extension
 
-    Args:
+    Parameters:
         config_location (string): The complete path of the location
             of the config file. Sample config at
             (https://github.com/GluuFederation/oxd-python/blob/master/sample.cfg)
@@ -76,11 +76,10 @@ class Client:
         """Function to register the site and generate a unique ID for the site
 
         Returns:
-            string: The ID of the site (also called client id) if the
-            registration is successful
+            **string:** The ID of the site (also called client id) if the registration is successful
 
         Raises:
-            OxdServerError: If the site registration fails.
+            **OxdServerError:** If the site registration fails.
         """
         if self.oxd_id:
             logger.info('Client is already registered. ID: %s', self.oxd_id)
@@ -118,24 +117,17 @@ class Client:
         """Function to get the authorization url that can be opened in the
         browser for the user to provide authorization and authentication
 
-        Args:
-            acr_values (list, optional): acr values in the order of priority
-            prompt (string, optional): prompt=login is required if you want to
-                force alter current user session (in case user is already
-                logged in from site1 and site2 constructs authorization
-                request and want to force alter current user session)
-            scope (list, optional): scopes required, takes the one provided
-                during site registrations by default
-            custom_params (dict, optional): Any custom arguments that the
-                client wishes to pass on to the OP can be passed on as extra
-                parameters to the function
+        Parameters:
+            * **acr_values (list, optional):** acr values in the order of priority
+            * **prompt (string, optional):** prompt=login is required if you want to force alter current user session (in case user is already logged in from site1 and site2 constructs authorization request and want to force alter current user session)
+            * **scope (list, optional):** scopes required, takes the one provided during site registrations by default
+            * **custom_params (dict, optional):** Any custom arguments that the client wishes to pass on to the OP can be passed on as extra parameters to the function
 
         Returns:
-            string: The authorization url that the user must access for
-            authentication and authorization
+            **string:** The authorization url that the user must access for authentication and authorization
 
         Raises:
-            OxdServerError: If the oxd throws an error for any reason.
+            **OxdServerError:** If the oxd throws an error for any reason.
         """
         params = {"oxd_id": self.oxd_id}
 
@@ -164,12 +156,12 @@ class Client:
         """Function to get access code for getting the user details from the
         OP. It is called after the user authorizes by visiting the auth URL.
 
-        Args:
-            code (string): code, parse from the callback URL querystring
-            state (string): state value parsed from the callback URL
+        Parameters:
+            * **code (string):** code, parse from the callback URL querystring
+            * **state (string):** state value parsed from the callback URL
 
         Returns:
-            dict: The tokens object with the following data structure.
+            **dict:** The tokens object with the following data structure.
 
             Example response::
 
@@ -191,7 +183,7 @@ class Client:
                 }
 
         Raises:
-            OxdServerError: If oxd server throws an error OR if the params code
+            **OxdServerError:** If oxd server throws an error OR if the params code
                 and scopes are of improper data type.
         """
         params = dict(oxd_id=self.oxd_id, code=code, state=state)
@@ -208,13 +200,12 @@ class Client:
     def get_access_token_by_refresh_token(self, refresh_token, scope=None):
         """Function that is used to get a new access token using refresh token
 
-        Args:
-            refresh_token (str): refresh_token from get_tokens_by_code command
-            scope (list, optional): a list of scopes. If not specified should
-                grant access with scope provided in previous request
+        Parameters:
+            * **refresh_token (str):** refresh_token from get_tokens_by_code command
+            * **scope (list, optional):** a list of scopes. If not specified should grant access with scope provided in previous request
 
         Returns:
-            dict: the tokens with expiry time.
+            **dict:** the tokens with expiry time.
 
             Example response::
 
@@ -251,12 +242,11 @@ class Client:
             Refer to the /.well-known/openid-configuration URL of your OP for
             the complete list of the claims for different scopes.
 
-        Args:
-            access_token (string): access token from the get_tokens_by_code
-                                    function
+        Parameters:
+            * **access_token (string):** access token from the get_tokens_by_code function
 
         Returns:
-            dict: The user data claims that are returned by the OP in format
+            **dict:** The user data claims that are returned by the OP in format
 
             Example response::
 
@@ -271,7 +261,7 @@ class Client:
                 }
 
         Raises:
-            OxdServerError: If the param access_token is empty OR if the oxd
+            **OxdServerError:** If the param access_token is empty OR if the oxd
                 Server returns an error.
         """
         params = dict(oxd_id=self.oxd_id, access_token=access_token)
@@ -289,16 +279,14 @@ class Client:
                        state=None, session_state=None):
         """Function to logout the user.
 
-        Args:
-            id_token_hint (string, optional): oxd server will use last used
-                ID Token, if not provided
-            post_logout_redirect_uri (string, optional): URI to redirect,
-                this uri would override the value given in the site-config
-            state (string, optional): site state
-            session_state (string, optional): session state
+        Parameters:
+            * **id_token_hint (string, optional):** oxd server will use last used ID Token, if not provided
+            * **post_logout_redirect_uri (string, optional):** URI to redirect, this uri would override the value given in the site-config
+            * **state (string, optional):** site state
+            * **session_state (string, optional):** session state
 
         Returns:
-            string: The URI to which the user must be directed in order to
+            **string:** The URI to which the user must be directed in order to
             perform the logout
         """
         params = {"oxd_id": self.oxd_id}
@@ -326,15 +314,14 @@ class Client:
         """Function to update the site's information with OpenID Provider.
         This should be called after changing the values in the cfg file.
 
-        Args:
-            client_secret_expires_at (long, OPTIONAL): milliseconds since 1970,
-                can be used to extends client lifetime
+        Parameters:
+            * **client_secret_expires_at (long, OPTIONAL):** milliseconds since 1970, can be used to extends client lifetime
 
         Returns:
-            bool: The status for update. True for success and False for failure
+            **bool:** The status for update. True for success and False for failure
 
         Raises:
-            OxdServerError: When the update fails and oxd server returns error
+            **OxdServerError:** When the update fails and oxd server returns error
         """
         params = {
             "oxd_id": self.oxd_id,
@@ -367,12 +354,11 @@ class Client:
     def uma_rs_protect(self, resources):
         """Function to be used in a UMA Resource Server to protect resources.
 
-        Args:
-            resources (list): list of resource to protect. See example at
-                <https://gluu.org/docs/oxd/3.1.1/api/#uma-rs-protect-resources>_
+        Parameters:
+            * **resources (list):** list of resource to protect. See example at `here <https://gluu.org/docs/oxd/3.1.2/api/#uma-rs-protect-resources>`_
 
         Returns:
-            bool: The status of the request.
+            **bool:** The status of the request.
         """
         params = dict(oxd_id=self.oxd_id, resources=resources)
 
@@ -387,15 +373,13 @@ class Client:
     def uma_rs_check_access(self, rpt, path, http_method):
         """Function to be used in a UMA Resource Server to check access.
 
-        Args:
-            rpt (string): RPT or blank value if absent (not send by RP)
-            path (string): Path of resource (e.g. for http://rs.com/phones,
-                /phones should be passed)
-            http_method (string) - Http method of RP request (GET, POST, PUT,
-                DELETE)
+        Parameters:
+            * **rpt (string):** RPT or blank value if absent (not send by RP)
+            * **path (string):** Path of resource (e.g. for http://rs.com/phones, /phones should be passed)
+            * **http_method (string):** Http method of RP request (GET, POST, PUT, DELETE)
 
         Returns:
-            dict: The access information received in the format below.
+            **dict:** The access information received in the format below.
 
             If the access is granted::
 
@@ -441,20 +425,19 @@ class Client:
                        pct=None, rpt=None, scope=None, state=None):
         """Function to be used by a UMA Requesting Party to get RPT token.
 
-        Args:
-            ticket (str, REQUIRED): ticket
-            claim_token (str, OPTIONAL): claim token
-            claim_token_format (str, OPTIONAL): claim token format
-            pct (str, OPTIONAL): pct
-            rpt (str, OPTIONAL): rpt
-            scope (list, OPTIONAL): scope
-            state (str, OPTIONAL): state that is returned from
-                `uma_rp_get_claims_gathering_url` command
+        Parameters:
+            * **ticket (str, REQUIRED):** ticket
+            * **claim_token (str, OPTIONAL):** claim token
+            * **claim_token_format (str, OPTIONAL):** claim token format
+            * **pct (str, OPTIONAL):** pct
+            * **rpt (str, OPTIONAL):** rpt
+            * **scope (list, OPTIONAL):** scope
+            * **state (str, OPTIONAL):** state that is returned from `uma_rp_get_claims_gathering_url` command
 
         Returns:
-            dict: The response from the OP
+            **dict:** The response from the OP.
 
-            Success Response::
+            Success response::
 
                 {
                     "status":"ok",
@@ -466,38 +449,29 @@ class Client:
                     }
                 }
 
+            NeedInfoError response::
+
+                {
+					"error":"need_info",
+					"ticket":"ZXJyb3JfZGV0YWlscw==",
+					"required_claims":[
+						{
+							"claim_token_format":[
+								"http://openid.net/specs/openid-connect-core-1_0.html#IDToken"
+							],
+							"claim_type":"urn:oid:0.9.2342.19200300.100.1.3",
+							"friendly_name":"email",
+							"issuer":["https://example.com/idp"],
+							"name":"email23423453ou453"
+						}
+					],
+					"redirect_user":"https://as.example.com/rqp_claims?id=2346576421"
+				}
+				
         Raises:
-            OxdServerError: When oxd-server reports a generic internal_error
-            InvalidTicketError: When the oxd server returns a "invalid_ticket"
-                error
-            NeedInfoError: When the oxd server returns the "need_info" error.
-                The details of the error can be obtained from the exception as
-                a dict as shown below::
-
-                    try:
-                        rpt = client.uma_rp_get_rpt('ticket')
-                    except NeedInfoError as e:
-                        details = e.details
-
-                The details dict::
-
-                    {
-                        "error":"need_info",
-                        "ticket":"ZXJyb3JfZGV0YWlscw==",
-                        "required_claims":[
-                            {
-                                "claim_token_format":[
-                                    "http://openid.net/specs/openid-connect-core-1_0.html#IDToken"
-                                ],
-                                "claim_type":"urn:oid:0.9.2342.19200300.100.1.3",
-                                "friendly_name":"email",
-                                "issuer":["https://example.com/idp"],
-                                "name":"email23423453ou453"
-                            }
-                        ],
-                        "redirect_user":"https://as.example.com/rqp_claims?id=2346576421"
-                    }
-
+            **OxdServerError:** When oxd-server reports a generic internal_error
+            **InvalidTicketError:** When the oxd server returns a "invalid_ticket" error
+			
         """
         params = {
             "oxd_id": self.oxd_id,
@@ -535,12 +509,11 @@ class Client:
     def uma_rp_get_claims_gathering_url(self, ticket):
         """UMA RP function to get the claims gathering URL.
 
-        Args:
-            ticket (str): ticket to pass to the auth server. for 90% of the
-                cases, this will be obtained from 'need_info' error of get_rpt
+        Parameters:
+            * **ticket (str):** ticket to pass to the auth server. for 90% of the cases, this will be obtained from 'need_info' error of get_rpt
 
         Returns:
-            string specifying the claims gathering url
+            **string** specifying the claims gathering url
         """
         params = {
             'oxd_id': self.oxd_id,
@@ -568,7 +541,7 @@ class Client:
             If you are using the oxd-https-extension, you must setup the client
 
         Returns:
-            dict: the client setup information
+            **dict:** the client setup information
 
             Example response::
 
@@ -631,23 +604,16 @@ class Client:
         stored in the config file and used as the `protection_access_token`
         for all subsequent calls to oxd.
 
-        Args:
-            client_id (str, optional): client id from OP or from previous
-                `setup_client` call
-            client_secret (str, optional): client secret from the OP or from
-                `setup_client` call
-            op_host (str, optional): OP Host URL, default is read from the site
-                configuration file
-            op_discovery_path (str, optional): op discovery path provided by OP
-            scope (list, optional): scopes of access required, default values
-                are obtained from the config file
-            auto_update(bool, optional): automatically get a new access_token
-                when the current one expires. If this is set to False, then
-                the application must call `get_client_token` when the token
-                expires to update the client with a new access token.
+        Parameters:
+            * **client_id (str, optional):** client id from OP or from previous `setup_client` call
+            * **client_secret (str, optional):** client secret from the OP or from `setup_client` call
+            * **op_host (str, optional):** OP Host URL, default is read from the site configuration file
+            * **op_discovery_path (str, optional):** op discovery path provided by OP
+            * **scope (list, optional):** scopes of access required, default values are obtained from the config file
+            * **auto_update(bool, optional):** automatically get a new access_token when the current one expires. If this is set to False, then the application must call `get_client_token` when the token expires to update the client with a new access token.
 
         Returns:
-            dict: The client token and the refresh token in the form.
+            **dict:** The client token and the refresh token in the form.
 
             Example response ::
 
@@ -724,11 +690,11 @@ class Client:
     def introspect_access_token(self, access_token):
         """Gives information about an access token.
 
-        Args:
-            access_token (str, required) - access_token from get_tokens_by_code or get_client_token function
+        Parameters:
+            * **access_token (str, required):** access_token from get_tokens_by_code or get_client_token function
                 
         Returns:
-            dict: The information about the access token.
+            **dict:** The information about the access token.
 
             Example response ::
 
@@ -766,11 +732,11 @@ class Client:
     def introspect_rpt(self, rpt):
         """Gives information about an RPT.
 
-        Args:
-            rpt (str, required) - rpt from uma_rp_get_rpt function
+        Parameters:
+            * **rpt (str, required):** rpt from uma_rp_get_rpt function
 
         Returns:
-            dict: The information about the RPT.
+            **dict:** The information about the RPT.
 
             Example response ::
 

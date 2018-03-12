@@ -1,7 +1,7 @@
-oxdpython.client
+messenger module
 ================
 
-.. automodule:: oxdpython.client
+.. automodule:: messenger
     :members:
     :undoc-members:
     :show-inheritance:

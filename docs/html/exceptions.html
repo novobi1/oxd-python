@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>oxdpython.exceptions &mdash; oxd Python 3.1.1 documentation</title>
+  <title>exceptions module &mdash; oxd-python 3.1.2 documentation</title>
   
 
+  
+  
   
   
 
@@ -30,9 +32,12 @@
   
 
   
-    <link rel="top" title="oxd Python 3.1.1 documentation" href="index.html"/>
-        <link rel="next" title="oxdpython.messenger" href="messenger.html"/>
-        <link rel="prev" title="oxdpython.configurer" href="configurer.html"/> 
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="oxd-python 3.1.2 documentation" href="index.html"/>
+        <link rel="next" title="messenger module" href="messenger.html"/>
+        <link rel="prev" title="configurer module" href="configurer.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -41,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -50,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> oxd Python
+            <a href="index.html" class="icon icon-home"> oxd-python
           
 
           
@@ -60,7 +66,7 @@
             
             
               <div class="version">
-                3.1.1
+                3.1.2
               </div>
             
           
@@ -81,11 +87,15 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="client.html">oxdpython.client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="configurer.html">oxdpython.configurer</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">oxdpython.exceptions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="messenger.html">oxdpython.messenger</a></li>
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="client.html">client module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configurer.html">configurer module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">exceptions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="messenger.html">messenger module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
 
             
@@ -98,8 +108,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">oxd Python</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">oxd-python</a>
+        
       </nav>
 
 
@@ -108,64 +120,600 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>oxdpython.exceptions</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>exceptions module</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-oxdpython.exceptions">
-<span id="oxdpython-exceptions"></span><h1>oxdpython.exceptions<a class="headerlink" href="#module-oxdpython.exceptions" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-exceptions">
+<span id="exceptions-module"></span><h1>exceptions module<a class="headerlink" href="#module-exceptions" title="Permalink to this headline">¶</a></h1>
+<p>Python’s standard exception class hierarchy.</p>
+<p>Exceptions found here are defined both in the exceptions module and the
+built-in namespace.  It is recommended that user-defined exceptions
+inherit from Exception.  See the documentation for the exception
+inheritance hierarchy.</p>
 <dl class="exception">
-<dt id="oxdpython.exceptions.InvalidTicketError">
-<em class="property">exception </em><code class="descclassname">oxdpython.exceptions.</code><code class="descname">InvalidTicketError</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oxdpython/exceptions.html#InvalidTicketError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oxdpython.exceptions.InvalidTicketError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
-<p>Error raised when oxd-server returns a &#8220;invalid_ticket&#8221; error for the
-<cite>uma_rp_get_rpt</cite> command.</p>
+<dt id="exceptions.ArithmeticError">
+<em class="property">exception </em><code class="descname">ArithmeticError</code><a class="headerlink" href="#exceptions.ArithmeticError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Base class for arithmetic errors.</p>
 </dd></dl>
 
 <dl class="exception">
-<dt id="oxdpython.exceptions.NeedInfoError">
-<em class="property">exception </em><code class="descclassname">oxdpython.exceptions.</code><code class="descname">NeedInfoError</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oxdpython/exceptions.html#NeedInfoError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oxdpython.exceptions.NeedInfoError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
-<p>Error raised when oxd-server returns a &#8220;need_info&#8221; error for the
-<cite>uma_rp_get_rpt</cite> command.</p>
+<dt id="exceptions.AssertionError">
+<em class="property">exception </em><code class="descname">AssertionError</code><a class="headerlink" href="#exceptions.AssertionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Assertion failed.</p>
 </dd></dl>
 
 <dl class="exception">
-<dt id="oxdpython.exceptions.OxdServerError">
-<em class="property">exception </em><code class="descclassname">oxdpython.exceptions.</code><code class="descname">OxdServerError</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/oxdpython/exceptions.html#OxdServerError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#oxdpython.exceptions.OxdServerError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
-<p>Error raises by oxdpython whenever a Oxd Server Error is reported</p>
+<dt id="exceptions.AttributeError">
+<em class="property">exception </em><code class="descname">AttributeError</code><a class="headerlink" href="#exceptions.AttributeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Attribute not found.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.BaseException">
+<em class="property">exception </em><code class="descname">BaseException</code><a class="headerlink" href="#exceptions.BaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Common base class for all exceptions</p>
+<dl class="attribute">
+<dt id="exceptions.BaseException.args">
+<code class="descname">args</code><a class="headerlink" href="#exceptions.BaseException.args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.BaseException.message">
+<code class="descname">message</code><a class="headerlink" href="#exceptions.BaseException.message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.BufferError">
+<em class="property">exception </em><code class="descname">BufferError</code><a class="headerlink" href="#exceptions.BufferError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Buffer error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.BytesWarning">
+<em class="property">exception </em><code class="descname">BytesWarning</code><a class="headerlink" href="#exceptions.BytesWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about bytes and buffer related problems, mostly
+related to conversion from str or comparing to str.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.DeprecationWarning">
+<em class="property">exception </em><code class="descname">DeprecationWarning</code><a class="headerlink" href="#exceptions.DeprecationWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about deprecated features.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.EOFError">
+<em class="property">exception </em><code class="descname">EOFError</code><a class="headerlink" href="#exceptions.EOFError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Read beyond end of file.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.EnvironmentError">
+<em class="property">exception </em><code class="descname">EnvironmentError</code><a class="headerlink" href="#exceptions.EnvironmentError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Base class for I/O related errors.</p>
+<dl class="attribute">
+<dt id="exceptions.EnvironmentError.errno">
+<code class="descname">errno</code><a class="headerlink" href="#exceptions.EnvironmentError.errno" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception errno</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.EnvironmentError.filename">
+<code class="descname">filename</code><a class="headerlink" href="#exceptions.EnvironmentError.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception filename</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.EnvironmentError.strerror">
+<code class="descname">strerror</code><a class="headerlink" href="#exceptions.EnvironmentError.strerror" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception strerror</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.Exception">
+<em class="property">exception </em><code class="descname">Exception</code><a class="headerlink" href="#exceptions.Exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.BaseException" title="exceptions.BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.BaseException</span></code></a></p>
+<p>Common base class for all non-exit exceptions.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.FloatingPointError">
+<em class="property">exception </em><code class="descname">FloatingPointError</code><a class="headerlink" href="#exceptions.FloatingPointError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.ArithmeticError" title="exceptions.ArithmeticError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ArithmeticError</span></code></a></p>
+<p>Floating point operation failed.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.FutureWarning">
+<em class="property">exception </em><code class="descname">FutureWarning</code><a class="headerlink" href="#exceptions.FutureWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about constructs that will change semantically
+in the future.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.GeneratorExit">
+<em class="property">exception </em><code class="descname">GeneratorExit</code><a class="headerlink" href="#exceptions.GeneratorExit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.BaseException" title="exceptions.BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.BaseException</span></code></a></p>
+<p>Request that a generator exit.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.IOError">
+<em class="property">exception </em><code class="descname">IOError</code><a class="headerlink" href="#exceptions.IOError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.EnvironmentError" title="exceptions.EnvironmentError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.EnvironmentError</span></code></a></p>
+<p>I/O operation failed.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.ImportError">
+<em class="property">exception </em><code class="descname">ImportError</code><a class="headerlink" href="#exceptions.ImportError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Import can’t find module, or can’t find name in module.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.ImportWarning">
+<em class="property">exception </em><code class="descname">ImportWarning</code><a class="headerlink" href="#exceptions.ImportWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about probable mistakes in module imports</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.IndentationError">
+<em class="property">exception </em><code class="descname">IndentationError</code><a class="headerlink" href="#exceptions.IndentationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.SyntaxError" title="exceptions.SyntaxError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.SyntaxError</span></code></a></p>
+<p>Improper indentation.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.IndexError">
+<em class="property">exception </em><code class="descname">IndexError</code><a class="headerlink" href="#exceptions.IndexError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.LookupError" title="exceptions.LookupError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.LookupError</span></code></a></p>
+<p>Sequence index out of range.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.KeyError">
+<em class="property">exception </em><code class="descname">KeyError</code><a class="headerlink" href="#exceptions.KeyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.LookupError" title="exceptions.LookupError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.LookupError</span></code></a></p>
+<p>Mapping key not found.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.KeyboardInterrupt">
+<em class="property">exception </em><code class="descname">KeyboardInterrupt</code><a class="headerlink" href="#exceptions.KeyboardInterrupt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.BaseException" title="exceptions.BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.BaseException</span></code></a></p>
+<p>Program interrupted by user.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.LookupError">
+<em class="property">exception </em><code class="descname">LookupError</code><a class="headerlink" href="#exceptions.LookupError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Base class for lookup errors.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.MemoryError">
+<em class="property">exception </em><code class="descname">MemoryError</code><a class="headerlink" href="#exceptions.MemoryError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Out of memory.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.NameError">
+<em class="property">exception </em><code class="descname">NameError</code><a class="headerlink" href="#exceptions.NameError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Name not found globally.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.NotImplementedError">
+<em class="property">exception </em><code class="descname">NotImplementedError</code><a class="headerlink" href="#exceptions.NotImplementedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.RuntimeError" title="exceptions.RuntimeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.RuntimeError</span></code></a></p>
+<p>Method or function hasn’t been implemented yet.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.OSError">
+<em class="property">exception </em><code class="descname">OSError</code><a class="headerlink" href="#exceptions.OSError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.EnvironmentError" title="exceptions.EnvironmentError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.EnvironmentError</span></code></a></p>
+<p>OS system call failed.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.OverflowError">
+<em class="property">exception </em><code class="descname">OverflowError</code><a class="headerlink" href="#exceptions.OverflowError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.ArithmeticError" title="exceptions.ArithmeticError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ArithmeticError</span></code></a></p>
+<p>Result too large to be represented.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.PendingDeprecationWarning">
+<em class="property">exception </em><code class="descname">PendingDeprecationWarning</code><a class="headerlink" href="#exceptions.PendingDeprecationWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about features which will be deprecated
+in the future.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.ReferenceError">
+<em class="property">exception </em><code class="descname">ReferenceError</code><a class="headerlink" href="#exceptions.ReferenceError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Weak ref proxy used after referent went away.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.RuntimeError">
+<em class="property">exception </em><code class="descname">RuntimeError</code><a class="headerlink" href="#exceptions.RuntimeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Unspecified run-time error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.RuntimeWarning">
+<em class="property">exception </em><code class="descname">RuntimeWarning</code><a class="headerlink" href="#exceptions.RuntimeWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about dubious runtime behavior.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.StandardError">
+<em class="property">exception </em><code class="descname">StandardError</code><a class="headerlink" href="#exceptions.StandardError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Exception" title="exceptions.Exception"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Base class for all standard Python exceptions that do not represent
+interpreter exiting.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.StopIteration">
+<em class="property">exception </em><code class="descname">StopIteration</code><a class="headerlink" href="#exceptions.StopIteration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Exception" title="exceptions.Exception"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Signal the end from iterator.next().</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.SyntaxError">
+<em class="property">exception </em><code class="descname">SyntaxError</code><a class="headerlink" href="#exceptions.SyntaxError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Invalid syntax.</p>
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.filename">
+<code class="descname">filename</code><a class="headerlink" href="#exceptions.SyntaxError.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception filename</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.lineno">
+<code class="descname">lineno</code><a class="headerlink" href="#exceptions.SyntaxError.lineno" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception lineno</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.msg">
+<code class="descname">msg</code><a class="headerlink" href="#exceptions.SyntaxError.msg" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception msg</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.offset">
+<code class="descname">offset</code><a class="headerlink" href="#exceptions.SyntaxError.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception offset</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.print_file_and_line">
+<code class="descname">print_file_and_line</code><a class="headerlink" href="#exceptions.SyntaxError.print_file_and_line" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception print_file_and_line</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.SyntaxError.text">
+<code class="descname">text</code><a class="headerlink" href="#exceptions.SyntaxError.text" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception text</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.SyntaxWarning">
+<em class="property">exception </em><code class="descname">SyntaxWarning</code><a class="headerlink" href="#exceptions.SyntaxWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about dubious syntax.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.SystemError">
+<em class="property">exception </em><code class="descname">SystemError</code><a class="headerlink" href="#exceptions.SystemError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Internal error in the Python interpreter.</p>
+<p>Please report this to the Python maintainer, along with the traceback,
+the Python version, and the hardware/OS platform and version.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.SystemExit">
+<em class="property">exception </em><code class="descname">SystemExit</code><a class="headerlink" href="#exceptions.SystemExit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.BaseException" title="exceptions.BaseException"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.BaseException</span></code></a></p>
+<p>Request to exit from the interpreter.</p>
+<dl class="attribute">
+<dt id="exceptions.SystemExit.code">
+<code class="descname">code</code><a class="headerlink" href="#exceptions.SystemExit.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception code</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.TabError">
+<em class="property">exception </em><code class="descname">TabError</code><a class="headerlink" href="#exceptions.TabError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.IndentationError" title="exceptions.IndentationError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.IndentationError</span></code></a></p>
+<p>Improper mixture of spaces and tabs.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.TypeError">
+<em class="property">exception </em><code class="descname">TypeError</code><a class="headerlink" href="#exceptions.TypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Inappropriate argument type.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnboundLocalError">
+<em class="property">exception </em><code class="descname">UnboundLocalError</code><a class="headerlink" href="#exceptions.UnboundLocalError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.NameError" title="exceptions.NameError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.NameError</span></code></a></p>
+<p>Local name referenced but not bound to a value.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnicodeDecodeError">
+<em class="property">exception </em><code class="descname">UnicodeDecodeError</code><a class="headerlink" href="#exceptions.UnicodeDecodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.UnicodeError" title="exceptions.UnicodeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.UnicodeError</span></code></a></p>
+<p>Unicode decoding error.</p>
+<dl class="attribute">
+<dt id="exceptions.UnicodeDecodeError.encoding">
+<code class="descname">encoding</code><a class="headerlink" href="#exceptions.UnicodeDecodeError.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception encoding</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeDecodeError.end">
+<code class="descname">end</code><a class="headerlink" href="#exceptions.UnicodeDecodeError.end" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception end</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeDecodeError.object">
+<code class="descname">object</code><a class="headerlink" href="#exceptions.UnicodeDecodeError.object" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeDecodeError.reason">
+<code class="descname">reason</code><a class="headerlink" href="#exceptions.UnicodeDecodeError.reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception reason</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeDecodeError.start">
+<code class="descname">start</code><a class="headerlink" href="#exceptions.UnicodeDecodeError.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception start</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnicodeEncodeError">
+<em class="property">exception </em><code class="descname">UnicodeEncodeError</code><a class="headerlink" href="#exceptions.UnicodeEncodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.UnicodeError" title="exceptions.UnicodeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.UnicodeError</span></code></a></p>
+<p>Unicode encoding error.</p>
+<dl class="attribute">
+<dt id="exceptions.UnicodeEncodeError.encoding">
+<code class="descname">encoding</code><a class="headerlink" href="#exceptions.UnicodeEncodeError.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception encoding</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeEncodeError.end">
+<code class="descname">end</code><a class="headerlink" href="#exceptions.UnicodeEncodeError.end" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception end</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeEncodeError.object">
+<code class="descname">object</code><a class="headerlink" href="#exceptions.UnicodeEncodeError.object" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeEncodeError.reason">
+<code class="descname">reason</code><a class="headerlink" href="#exceptions.UnicodeEncodeError.reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception reason</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeEncodeError.start">
+<code class="descname">start</code><a class="headerlink" href="#exceptions.UnicodeEncodeError.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception start</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnicodeError">
+<em class="property">exception </em><code class="descname">UnicodeError</code><a class="headerlink" href="#exceptions.UnicodeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.ValueError" title="exceptions.ValueError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ValueError</span></code></a></p>
+<p>Unicode related error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnicodeTranslateError">
+<em class="property">exception </em><code class="descname">UnicodeTranslateError</code><a class="headerlink" href="#exceptions.UnicodeTranslateError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.UnicodeError" title="exceptions.UnicodeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.UnicodeError</span></code></a></p>
+<p>Unicode translation error.</p>
+<dl class="attribute">
+<dt id="exceptions.UnicodeTranslateError.encoding">
+<code class="descname">encoding</code><a class="headerlink" href="#exceptions.UnicodeTranslateError.encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception encoding</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeTranslateError.end">
+<code class="descname">end</code><a class="headerlink" href="#exceptions.UnicodeTranslateError.end" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception end</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeTranslateError.object">
+<code class="descname">object</code><a class="headerlink" href="#exceptions.UnicodeTranslateError.object" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception object</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeTranslateError.reason">
+<code class="descname">reason</code><a class="headerlink" href="#exceptions.UnicodeTranslateError.reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception reason</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.UnicodeTranslateError.start">
+<code class="descname">start</code><a class="headerlink" href="#exceptions.UnicodeTranslateError.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception start</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UnicodeWarning">
+<em class="property">exception </em><code class="descname">UnicodeWarning</code><a class="headerlink" href="#exceptions.UnicodeWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings about Unicode related problems, mostly
+related to conversion problems.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.UserWarning">
+<em class="property">exception </em><code class="descname">UserWarning</code><a class="headerlink" href="#exceptions.UserWarning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Warning" title="exceptions.Warning"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Warning</span></code></a></p>
+<p>Base class for warnings generated by user code.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.ValueError">
+<em class="property">exception </em><code class="descname">ValueError</code><a class="headerlink" href="#exceptions.ValueError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.StandardError" title="exceptions.StandardError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.StandardError</span></code></a></p>
+<p>Inappropriate argument value (of correct type).</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.Warning">
+<em class="property">exception </em><code class="descname">Warning</code><a class="headerlink" href="#exceptions.Warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.Exception" title="exceptions.Exception"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></a></p>
+<p>Base class for warning categories.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.WindowsError">
+<em class="property">exception </em><code class="descname">WindowsError</code><a class="headerlink" href="#exceptions.WindowsError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.OSError" title="exceptions.OSError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.OSError</span></code></a></p>
+<p>MS-Windows OS system call failed.</p>
+<dl class="attribute">
+<dt id="exceptions.WindowsError.errno">
+<code class="descname">errno</code><a class="headerlink" href="#exceptions.WindowsError.errno" title="Permalink to this definition">¶</a></dt>
+<dd><p>POSIX exception code</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.WindowsError.filename">
+<code class="descname">filename</code><a class="headerlink" href="#exceptions.WindowsError.filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception filename</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.WindowsError.strerror">
+<code class="descname">strerror</code><a class="headerlink" href="#exceptions.WindowsError.strerror" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception strerror</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="exceptions.WindowsError.winerror">
+<code class="descname">winerror</code><a class="headerlink" href="#exceptions.WindowsError.winerror" title="Permalink to this definition">¶</a></dt>
+<dd><p>Win32 exception code</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="exceptions.ZeroDivisionError">
+<em class="property">exception </em><code class="descname">ZeroDivisionError</code><a class="headerlink" href="#exceptions.ZeroDivisionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#exceptions.ArithmeticError" title="exceptions.ArithmeticError"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ArithmeticError</span></code></a></p>
+<p>Second argument to a division or modulo operation was zero.</p>
 </dd></dl>
 
 </div>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="messenger.html" class="btn btn-neutral float-right" title="oxdpython.messenger" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="messenger.html" class="btn btn-neutral float-right" title="messenger module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="configurer.html" class="btn btn-neutral" title="oxdpython.configurer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="configurer.html" class="btn btn-neutral" title="configurer module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -174,7 +722,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Gluu.
+        &copy; Copyright 2018, Gluu.
 
     </p>
   </div>
@@ -196,10 +744,11 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'3.1.1',
+            VERSION:'3.1.2',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
@@ -214,12 +763,6 @@
   
 
   
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
    
 
 </body>
