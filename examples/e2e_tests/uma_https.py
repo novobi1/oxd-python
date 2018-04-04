@@ -28,7 +28,7 @@ def run_commands(config):
     r = rset.add("/photoz")
     r.set_scope("GET", "https://photoz.example.com/uma/scope/view")
     print rset
-    protected = c.uma_rs_protect(rset.dump())
+    protected = c.uma_rs_protect(resources=rset.dump(), overwrite=True)
     logging.info("Received: %s", protected)
 
     print "\n=> Checking Access for URL /photoz, with method GET"
@@ -89,7 +89,7 @@ def run_commands(config):
     }
     r.set_expression("GET", scope_expr)
     print rset
-    protected = c.uma_rs_protect(rset.dump())
+    protected = c.uma_rs_protect(resources=rset.dump(), overwrite=True)
     logging.info("Received: %s", protected)
 
     print "\n=> Checking Access for URL /photo, with scope_expression"

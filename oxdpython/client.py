@@ -351,16 +351,20 @@ class Client:
 
         return True
 
-    def uma_rs_protect(self, resources):
+    def uma_rs_protect(self, resources, overwrite=None):
         """Function to be used in a UMA Resource Server to protect resources.
 
         Parameters:
             * **resources (list):** list of resource to protect. See example at `here <https://gluu.org/docs/oxd/3.1.2/api/#uma-rs-protect-resources>`_
+            * **overwrite (bool):** If true, Allows to update existing resources
 
         Returns:
             **bool:** The status of the request.
         """
         params = dict(oxd_id=self.oxd_id, resources=resources)
+
+        if overwrite:
+            params["overwrite"] = overwrite
 
         logger.debug("Sending `uma_rs_protect` with params %s", params)
         response = self.msgr.request("uma_rs_protect", **params)
