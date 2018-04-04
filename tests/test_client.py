@@ -342,7 +342,7 @@ class UmaRsProtectTestCase(unittest.TestCase):
                           }]
                       }]
 
-        assert self.c.uma_rs_protect(resources)
+        assert self.c.uma_rs_protect(resources=resources, overwrite=True)
 
     def test_scope_expression(self):
         resources = [{"path": "/photo",
@@ -373,7 +373,7 @@ class UmaRsProtectTestCase(unittest.TestCase):
                           }]
                       }]
 
-        assert self.c.uma_rs_protect(resources)
+        assert self.c.uma_rs_protect(resources=resources, overwrite=True)
 
     def test_raises_error_on_oxd_server_error(self):
         self.c.msgr.request.return_value = generic_error
