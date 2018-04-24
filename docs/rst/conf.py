@@ -24,9 +24,9 @@ copyright = u'2018, Gluu'
 author = u'Gluu'
 
 # The short X.Y version
-version = u'3.1.2'
+version = u'3.1.3'
 # The full version, including alpha/beta/rc tags
-release = u'3.1.2'
+release = u'3.1.3'
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,7 +40,7 @@ release = u'3.1.2'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-	'sphinx.ext.viewcode'
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -82,7 +82,6 @@ html_theme = 'sphinx_rtd_theme'
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
 html_theme_options = {
     'canonical_url': '',
     'analytics_id': '',
@@ -168,3 +167,6 @@ texinfo_documents = [
      author, 'oxd-python', 'Welcome to the oxd Python API reference page. If you are looking for docs on how to use the library go here.',
      'Miscellaneous'),
 ]
+
+
+# -- Extension configuration -------------------------------------------------
