@@ -222,7 +222,7 @@ browser for the user to provide authorization and authentication</p>
 
 <dl class="method">
 <dt id="client.Client.get_client_token">
-<code class="descname">get_client_token</code><span class="sig-paren">(</span><em>client_id=None</em>, <em>client_secret=None</em>, <em>op_host=None</em>, <em>op_discovery_path=None</em>, <em>scope=None</em>, <em>auto_update=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/client.html#Client.get_client_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#client.Client.get_client_token" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_client_token</code><span class="sig-paren">(</span><em>client_id=None</em>, <em>client_secret=None</em>, <em>op_host=None</em>, <em>op_discovery_path=None</em>, <em>scope=None</em>, <em>auto_update=True</em>, <em>authentication_method=None</em>, <em>algorithm=None</em>, <em>key_id=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/client.html#Client.get_client_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#client.Client.get_client_token" title="Permalink to this definition">¶</a></dt>
 <dd><p>Function to get the client token which can be used for protection in
 all future communication. The access token received by this method is
 stored in the config file and used as the <cite>protection_access_token</cite>
@@ -236,6 +236,9 @@ for all subsequent calls to oxd.</p>
 <li><strong>op_discovery_path (str, optional):</strong> op discovery path provided by OP</li>
 <li><strong>scope (list, optional):</strong> scopes of access required, default values are obtained from the config file</li>
 <li><strong>auto_update(bool, optional):</strong> automatically get a new access_token when the current one expires. If this is set to False, then the application must call <cite>get_client_token</cite> when the token expires to update the client with a new access token.</li>
+<li><strong>authentication_method (str, optional):</strong> If value is missed then basic authentication is used. Otherwise it’s possible to set <cite>private_key_jwt</cite> value for Private Key authentication.</li>
+<li><strong>algorithm (str, optional):</strong> Required if authentication_method=private_key_jwt. Valid values are none, HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512</li>
+<li><strong>key_id (str, optional):</strong> Required if authentication_method=private_key_jwt. It has to be valid key id from key store.</li>
 </ul>
 </dd>
 <dt>Returns:</dt>
@@ -467,7 +470,9 @@ parameter to other commands.</p>
 <p>Example response:</p>
 <div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;oxd_id&quot;</span><span class="p">:</span><span class="s2">&quot;6F9619FF-8B86-D011-B42D-00CF4FC964FF&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;client_id_of_oxd_id&quot;</span><span class="p">:</span> <span class="s2">&quot;@!1736.179E.AA60.16B2!0001!8F7C.B9AB!0008!A2BB.9AE6.AAA4&quot;</span><span class="p">,</span>
     <span class="s2">&quot;op_host&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;op host&gt;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;setup_client_oxd_id&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;setup client oxd_id&gt;&quot;</span><span class="p">,</span>
     <span class="s2">&quot;client_id&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;client id&gt;&quot;</span><span class="p">,</span>
     <span class="s2">&quot;client_secret&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;client secret&gt;&quot;</span><span class="p">,</span>
     <span class="s2">&quot;client_registration_access_token&quot;</span><span class="p">:</span><span class="s2">&quot;&lt;Client registration access token&gt;&quot;</span><span class="p">,</span>

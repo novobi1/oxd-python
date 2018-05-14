@@ -164,7 +164,6 @@
 <span class="kn">from</span> <span class="nn">threading</span> <span class="k">import</span> <span class="n">Timer</span>
 
 
-
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
@@ -216,7 +215,9 @@
                            <span class="s2">&quot;client_token_endpoint_auth_method&quot;</span><span class="p">,</span>
                            <span class="s2">&quot;client_id&quot;</span><span class="p">,</span>
                            <span class="s2">&quot;client_secret&quot;</span><span class="p">,</span>
-                           <span class="s2">&quot;application_type&quot;</span><span class="p">]</span>
+                           <span class="s2">&quot;application_type&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;client_registration_access_token&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;client_registration_client_uri&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">opt_list_params</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;grant_types&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;acr_values&quot;</span><span class="p">,</span>
                                 <span class="s2">&quot;contacts&quot;</span><span class="p">,</span>
@@ -709,7 +710,9 @@
 
 <span class="sd">                {</span>
 <span class="sd">                    &quot;oxd_id&quot;:&quot;6F9619FF-8B86-D011-B42D-00CF4FC964FF&quot;,</span>
+<span class="sd">                    &quot;client_id_of_oxd_id&quot;: &quot;@!1736.179E.AA60.16B2!0001!8F7C.B9AB!0008!A2BB.9AE6.AAA4&quot;,</span>
 <span class="sd">                    &quot;op_host&quot;: &quot;&lt;op host&gt;&quot;,</span>
+<span class="sd">                    &quot;setup_client_oxd_id&quot;: &quot;&lt;setup client oxd_id&gt;&quot;,</span>
 <span class="sd">                    &quot;client_id&quot;:&quot;&lt;client id&gt;&quot;,</span>
 <span class="sd">                    &quot;client_secret&quot;:&quot;&lt;client secret&gt;&quot;,</span>
 <span class="sd">                    &quot;client_registration_access_token&quot;:&quot;&lt;Client registration access token&gt;&quot;,</span>
@@ -760,7 +763,8 @@
 
 <div class="viewcode-block" id="Client.get_client_token"><a class="viewcode-back" href="../client.html#client.Client.get_client_token">[docs]</a>    <span class="k">def</span> <span class="nf">get_client_token</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client_secret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                          <span class="n">op_host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">op_discovery_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                         <span class="n">auto_update</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                         <span class="n">auto_update</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">authentication_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">algorithm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key_id</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Function to get the client token which can be used for protection in</span>
 <span class="sd">        all future communication. The access token received by this method is</span>
 <span class="sd">        stored in the config file and used as the `protection_access_token`</span>
@@ -773,6 +777,9 @@
 <span class="sd">            * **op_discovery_path (str, optional):** op discovery path provided by OP</span>
 <span class="sd">            * **scope (list, optional):** scopes of access required, default values are obtained from the config file</span>
 <span class="sd">            * **auto_update(bool, optional):** automatically get a new access_token when the current one expires. If this is set to False, then the application must call `get_client_token` when the token expires to update the client with a new access token.</span>
+<span class="sd">            * **authentication_method (str, optional):** If value is missed then basic authentication is used. Otherwise it&#39;s possible to set `private_key_jwt` value for Private Key authentication.</span>
+<span class="sd">            * **algorithm (str, optional):** Required if authentication_method=private_key_jwt. Valid values are none, HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512</span>
+<span class="sd">            * **key_id (str, optional):** Required if authentication_method=private_key_jwt. It has to be valid key id from key store.</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            **dict:** The client token and the refresh token in the form.</span>
@@ -795,6 +802,12 @@
             <span class="n">params</span><span class="p">[</span><span class="s1">&#39;op_discovery_path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">op_discovery_path</span>
         <span class="k">if</span> <span class="n">scope</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scope</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">params</span><span class="p">[</span><span class="s1">&#39;scope&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">scope</span>
+        <span class="k">if</span> <span class="n">authentication_method</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;authentication_method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">authentication_method</span>
+        <span class="k">if</span> <span class="n">algorithm</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;algorithm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">algorithm</span>
+        <span class="k">if</span> <span class="n">key_id</span><span class="p">:</span>
+            <span class="n">params</span><span class="p">[</span><span class="s1">&#39;key_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">key_id</span>
 
         <span class="c1"># If client id and secret aren&#39;t passed, then just read from the config</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">client_id</span><span class="p">:</span>

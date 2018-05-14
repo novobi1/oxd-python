@@ -58,7 +58,9 @@ class Client:
                            "client_token_endpoint_auth_method",
                            "client_id",
                            "client_secret",
-                           "application_type"]
+                           "application_type",
+                           "client_registration_access_token",
+                           "client_registration_client_uri"]
         self.opt_list_params = ["grant_types",
                                 "acr_values",
                                 "contacts",
@@ -551,7 +553,9 @@ class Client:
 
                 {
                     "oxd_id":"6F9619FF-8B86-D011-B42D-00CF4FC964FF",
+                    "client_id_of_oxd_id": "@!1736.179E.AA60.16B2!0001!8F7C.B9AB!0008!A2BB.9AE6.AAA4",
                     "op_host": "<op host>",
+                    "setup_client_oxd_id": "<setup client oxd_id>",
                     "client_id":"<client id>",
                     "client_secret":"<client secret>",
                     "client_registration_access_token":"<Client registration access token>",
@@ -602,7 +606,8 @@ class Client:
 
     def get_client_token(self, client_id=None, client_secret=None,
                          op_host=None, op_discovery_path=None, scope=None,
-                         auto_update=True):
+                         auto_update=True, authentication_method=None,
+                         algorithm=None, key_id=None):
         """Function to get the client token which can be used for protection in
         all future communication. The access token received by this method is
         stored in the config file and used as the `protection_access_token`
@@ -615,6 +620,9 @@ class Client:
             * **op_discovery_path (str, optional):** op discovery path provided by OP
             * **scope (list, optional):** scopes of access required, default values are obtained from the config file
             * **auto_update(bool, optional):** automatically get a new access_token when the current one expires. If this is set to False, then the application must call `get_client_token` when the token expires to update the client with a new access token.
+            * **authentication_method (str, optional):** If value is missed then basic authentication is used. Otherwise it's possible to set `private_key_jwt` value for Private Key authentication.
+            * **algorithm (str, optional):** Required if authentication_method=private_key_jwt. Valid values are none, HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512
+            * **key_id (str, optional):** Required if authentication_method=private_key_jwt. It has to be valid key id from key store.
 
         Returns:
             **dict:** The client token and the refresh token in the form.
@@ -637,6 +645,12 @@ class Client:
             params['op_discovery_path'] = op_discovery_path
         if scope and isinstance(scope, list):
             params['scope'] = scope
+        if authentication_method:
+            params['authentication_method'] = authentication_method
+        if algorithm:
+            params['algorithm'] = algorithm
+        if key_id:
+            params['key_id'] = key_id
 
         # If client id and secret aren't passed, then just read from the config
         if not client_id:
