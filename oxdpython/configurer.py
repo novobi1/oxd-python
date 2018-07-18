@@ -1,6 +1,6 @@
 import logging
 
-from ConfigParser import SafeConfigParser, NoOptionError, NoSectionError
+from configparser import SafeConfigParser, NoOptionError, NoSectionError
 
 logger = logging.getLogger(__name__)
 

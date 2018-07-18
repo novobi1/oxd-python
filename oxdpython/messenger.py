@@ -1,9 +1,10 @@
 import json
 import socket
 import logging
-import urllib2
+#import urllib2
 import ssl
 
+from urllib import request as urllib2
 from . import __version__
 
 logger = logging.getLogger(__name__)
@@ -100,7 +101,7 @@ class SocketMessenger(Messenger):
         totalsent = 0
         while totalsent < msg_length:
             try:
-                logger.debug("Sending: %s", cmd[totalsent:])
+                logger.debug("Sending: %s", cmd[totalsent:].encode())
                 sent = self.sock.send(cmd[totalsent:])
                 totalsent = totalsent + sent
             except socket.error as e:
@@ -114,7 +115,7 @@ class SocketMessenger(Messenger):
         received = 0
         done = False
         while not done:
-            part = self.sock.recv(1024)
+            part = self.sock.recv(1024).decode()
             if part == "":
                 logger.error("Socket connection broken, read empty.")
                 self.__connect()
