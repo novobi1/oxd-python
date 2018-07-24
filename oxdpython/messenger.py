@@ -194,7 +194,7 @@ class HttpMessenger(Messenger):
         """
         url = self.base + command.replace("_", "-")
 
-        req = urllib2.Request(url, json.dumps(kwargs))
+        req = urllib2.Request(url, json.dumps(kwargs).encode())
         req.add_header("User-Agent", "oxdpython/%s" % __version__)
         req.add_header("Content-type", "application/json; charset=UTF-8")
 
@@ -206,8 +206,10 @@ class HttpMessenger(Messenger):
 
         gcontext = ssl.SSLContext(ssl.PROTOCOL_TLSv1)
         resp = urllib2.urlopen(req, context=gcontext)
-
-        return json.load(resp)
+        html_response = resp.read()
+        encoding = resp.headers.get_content_charset('utf-8')
+        decoded_html = html_response.decode(encoding)
+        return json.loads(decoded_html)
 
     def __str__(self):
         return "HttpMessenger(%s)" % self.base

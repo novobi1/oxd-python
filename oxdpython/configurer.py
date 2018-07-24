@@ -55,7 +55,7 @@ class Configurer(object):
 
         self.parser.set(section, key, value)
 
-        with open(self.config_file, 'wb') as cfile:
+        with open(self.config_file, 'w') as cfile:
             self.parser.write(cfile)
 
         return True
